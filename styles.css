@@ -1,0 +1,149 @@
+/* =========================================================
+   Calculator — basic HTML/CSS/JS calculator
+   ========================================================= */
+
+:root {
+  --bg: #14161b;
+  --cal-bg: #1c1f26;
+  --display-bg: #10131a;
+  --key-num: #2a2e37;
+  --key-num-hover: #343a45;
+  --key-fn: #3a3f4a;
+  --key-fn-hover: #454b58;
+  --key-op: #ff9f43;
+  --key-op-hover: #ffb368;
+  --key-equals: #ff6b4a;
+  --key-equals-hover: #ff855f;
+  --text: #f4f5f7;
+  --text-muted: #8b93a1;
+  --radius: 14px;
+
+  --font-display: "JetBrains Mono", monospace;
+  --font-ui: "Inter", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  font-family: var(--font-ui);
+  color: var(--text);
+  padding: 24px;
+}
+
+.calculator {
+  width: 100%;
+  max-width: 340px;
+  background: var(--cal-bg);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Display ---------- */
+.display {
+  background: var(--display-bg);
+  border-radius: var(--radius);
+  padding: 28px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-height: 110px;
+  overflow: hidden;
+}
+
+.display-previous {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-muted);
+  min-height: 1.2em;
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+}
+
+.display-current {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 8vw, 2.6rem);
+  font-weight: 500;
+  width: 100%;
+  text-align: right;
+  word-break: break-all;
+  line-height: 1.2;
+}
+
+/* ---------- Keys grid ---------- */
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.key {
+  border: none;
+  border-radius: var(--radius);
+  padding: 18px 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.12s ease, transform 0.08s ease;
+}
+
+.key:active {
+  transform: scale(0.96);
+}
+
+.key-num {
+  background: var(--key-num);
+}
+.key-num:hover { background: var(--key-num-hover); }
+
+.key-fn {
+  background: var(--key-fn);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.key-fn:hover { background: var(--key-fn-hover); color: var(--text); }
+
+.key-op {
+  background: transparent;
+  color: var(--key-op);
+  border: 1px solid var(--key-op);
+}
+.key-op:hover {
+  background: var(--key-op);
+  color: var(--cal-bg);
+}
+
+.key-equals {
+  background: var(--key-equals);
+  color: var(--cal-bg);
+  grid-column: span 1;
+}
+.key-equals:hover { background: var(--key-equals-hover); }
+
+.key-zero {
+  grid-column: span 2;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 380px) {
+  .calculator { padding: 16px; }
+  .key { padding: 16px 0; font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key { transition: none; }
+}
